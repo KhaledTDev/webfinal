@@ -1,0 +1,992 @@
+/* ==================== CORAN PAGE SPECIFIC STYLES ==================== */
+
+/* Search Mode Selector */
+.search-mode-selector {
+    margin-bottom: 1rem;
+}
+
+.mode-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.mode-btn {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.75rem;
+    color: #4b5563;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.mode-btn:hover {
+    border-color: #059669;
+    color: #059669;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.15);
+}
+
+.mode-btn.active {
+    background: #059669;
+    border-color: #059669;
+    color: white;
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+}
+
+.mode-btn svg {
+    margin-left: 0.5rem;
+    width: 1rem;
+    height: 1rem;
+}
+
+@media (max-width: 640px) {
+  .search-mode-selector {
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
+  }
+
+  .mode-buttons {
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.625rem;
+    border-radius: 16px;
+  }
+  
+  .mode-btn {
+    padding: 0.875rem 1.5rem;
+    border-radius: 14px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    min-width: auto;
+  }
+
+  .mode-btn svg {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-mode-selector {
+    margin-bottom: 1.25rem;
+    padding: 0 0.25rem;
+  }
+
+  .mode-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 14px;
+  }
+  
+  .mode-btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+  }
+
+  .mode-btn svg {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+}
+
+/* Ayah Search Results */
+.ayah-result-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.ayah-result-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    border-color: #059669;
+}
+
+.ayah-result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.surah-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.surah-name {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #059669;
+}
+
+.surah-details {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.ayah-result-header .ayah-number {
+    background: #f0fdf4;
+    color: #059669;
+    font-weight: 700;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    border: 2px solid #d1fae5;
+    min-width: 50px;
+    text-align: center;
+}
+
+.ayah-text {
+    margin-bottom: 1rem;
+}
+
+.ayah-text .arabic-text {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: #1f2937;
+    font-family: 'Amiri', serif;
+    margin-bottom: 0.75rem;
+    direction: rtl;
+    text-align: right;
+}
+
+.ayah-text .translation {
+    font-size: 0.95rem;
+    color: #4b5563;
+    line-height: 1.6;
+    font-style: italic;
+    direction: ltr;
+    text-align: left;
+}
+
+.search-highlight {
+    background: #fef3c7;
+    color: #92400e;
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    font-weight: 600;
+}
+
+.ayah-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-primary {
+    background: #059669;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #047857;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+}
+
+/* Hero Section for Coran */
+.coran-hero {
+    background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #059669 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.coran-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 40% 60%, rgba(255, 255, 255, 0.05) 0%, transparent 30%);
+    animation: float 25s ease-in-out infinite;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+/* Surah Grid */
+.surah-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 640px) {
+    .surah-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+}
+
+/* Surah Card */
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(5, 150, 105, 0.1);
+    border: 2px solid transparent;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #059669, #0d9488);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.card:hover::before {
+    transform: scaleX(1);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(5, 150, 105, 0.2);
+    border-color: #059669;
+}
+
+/* Surah Number (Diamond Style) */
+.card .number {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #059669, #0d9488);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);
+}
+
+.card .number::before {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    background: white;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.card .number span {
+    position: relative;
+    z-index: 2;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #059669;
+    font-family: 'Amiri', serif;
+}
+
+/* Surah Info */
+.card .info {
+    flex: 1;
+    text-align: right;
+}
+
+.card .name_ar {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #064e3b;
+    margin-bottom: 0.5rem;
+    font-family: 'Amiri', serif;
+    line-height: 1.2;
+}
+
+.card .details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.card .type {
+    padding: 0.25rem 0.75rem;
+    background: #f0fdf4;
+    color: #059669;
+    border-radius: 12px;
+    font-weight: 600;
+    border: 1px solid #bbf7d0;
+}
+
+.card .ayahs_totales::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    background: #9ca3af;
+    border-radius: 50%;
+    margin: 0 0.5rem;
+    vertical-align: middle;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .card {
+        padding: 1.25rem;
+        min-height: 100px;
+        border-radius: 12px;
+    }
+    
+    .card .number {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .card .number span {
+        font-size: 1rem;
+    }
+    
+    .card .name_ar {
+        font-size: 1.25rem;
+    }
+    
+    .card .details {
+        font-size: 0.8125rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .surah-grid {
+        padding: 0 0.5rem;
+    }
+    
+    .card {
+        padding: 1rem;
+        min-height: 80px;
+        flex-direction: row-reverse;
+        text-align: right;
+    }
+    
+    .card .number {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .card .number span {
+        font-size: 0.9rem;
+    }
+    
+    .card .name_ar {
+        font-size: 1.125rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    .card .details {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.25rem;
+    }
+    
+    .card .ayahs_totales::before {
+        display: none;
+    }
+}
+
+/* Search Enhancement */
+.search-container {
+    max-width: 800px;
+    margin: 2rem auto 3rem;
+    padding: 2rem;
+    background: linear-gradient(145deg, #ffffff, #f8fafc);
+    border-radius: 24px;
+    box-shadow: 
+        0 8px 32px rgba(5, 150, 105, 0.12),
+        0 2px 8px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(5, 150, 105, 0.08);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.search-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(5, 150, 105, 0.03), transparent);
+    transition: left 0.8s ease;
+}
+
+.search-container:hover::before {
+    left: 100%;
+}
+
+.search-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 12px 40px rgba(5, 150, 105, 0.15),
+        0 4px 12px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    border-color: rgba(5, 150, 105, 0.12);
+}
+
+/* Search Row Layout */
+.search-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.search-input-wrapper {
+    flex: 1;
+    position: relative;
+}
+
+.mode-toggle-btn {
+    flex-shrink: 0;
+    padding: 1.25rem 2rem;
+    background: linear-gradient(135deg, #059669, #0d9488);
+    border: none;
+    border-radius: 16px;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 4px 16px rgba(5, 150, 105, 0.2),
+        0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    white-space: nowrap;
+    min-width: 180px;
+    justify-content: center;
+}
+
+.mode-toggle-btn:hover {
+    background: linear-gradient(135deg, #047857, #0f766e);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 6px 20px rgba(5, 150, 105, 0.25),
+        0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.mode-toggle-btn:active {
+    transform: translateY(0);
+    box-shadow: 
+        0 2px 8px rgba(5, 150, 105, 0.2),
+        0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.search-btn-wrapper {
+    flex-shrink: 0;
+}
+
+/* Hide old mode selector */
+.search-mode-selector {
+    display: none;
+}
+
+.mode-buttons {
+    display: none;
+}
+
+.mode-btn {
+    display: flex;
+    align-items: center;
+    padding: 1.25rem 2.5rem;
+    background: linear-gradient(145deg, #ffffff, #f9fafb);
+    border: 2px solid rgba(5, 150, 105, 0.08);
+    border-radius: 18px;
+    color: #4b5563;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 3px 12px rgba(0, 0, 0, 0.06),
+        0 1px 3px rgba(0, 0, 0, 0.04);
+    min-width: 180px;
+    justify-content: center;
+}
+
+.mode-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(5, 150, 105, 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.mode-btn:hover::before {
+    left: 100%;
+}
+
+.mode-btn:hover {
+    border-color: #059669;
+    color: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(5, 150, 105, 0.2);
+}
+
+.mode-btn.active {
+    background: linear-gradient(135deg, #059669, #0d9488);
+    border-color: #059669;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(5, 150, 105, 0.3);
+}
+
+.mode-btn.active::before {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.mode-btn svg {
+    margin-left: 0.75rem;
+    width: 1.125rem;
+    height: 1.125rem;
+    transition: transform 0.3s ease;
+}
+
+.mode-btn:hover svg,
+.mode-btn.active svg {
+    transform: scale(1.1);
+}
+
+/* Search Input Area Enhancement */
+.search-container .search-input {
+    width: 100%;
+    padding: 1.25rem 1.5rem;
+    border: 2px solid rgba(5, 150, 105, 0.08);
+    border-radius: 16px;
+    background: linear-gradient(145deg, #ffffff, #f9fafb);
+    font-size: 1rem;
+    font-weight: 500;
+    color: #374151;
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-bottom: 0;
+}
+
+.search-container .search-input:focus {
+    outline: none;
+    border-color: #059669;
+    box-shadow: 
+        0 4px 16px rgba(5, 150, 105, 0.12),
+        0 0 0 3px rgba(5, 150, 105, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transform: translateY(-1px);
+}
+
+.search-container .search-input::placeholder {
+    color: #9ca3af;
+    font-weight: 400;
+}
+
+.search-container .search-btn {
+    padding: 1.25rem 2rem;
+    background: linear-gradient(135deg, #059669, #0d9488);
+    border: none;
+    border-radius: 16px;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 4px 16px rgba(5, 150, 105, 0.2),
+        0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    white-space: nowrap;
+    min-width: 120px;
+}
+
+.search-container .search-btn:hover {
+    background: linear-gradient(135deg, #047857, #0f766e);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 6px 20px rgba(5, 150, 105, 0.25),
+        0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.search-container .search-btn:active {
+    transform: translateY(0);
+    box-shadow: 
+        0 2px 8px rgba(5, 150, 105, 0.2),
+        0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design for Search Container */
+@media (max-width: 768px) {
+    .search-container {
+        margin: 1.5rem auto 2.5rem;
+        padding: 1.5rem;
+        border-radius: 20px;
+    }
+    
+    .search-row {
+        gap: 0.75rem;
+    }
+    
+    .mode-toggle-btn {
+        padding: 1rem 1.5rem;
+        font-size: 0.9rem;
+        min-width: 140px;
+        border-radius: 14px;
+    }
+    
+    .search-container .search-input {
+        padding: 1rem 1.25rem;
+        font-size: 0.95rem;
+        border-radius: 14px;
+    }
+    
+    .search-container .search-btn {
+        padding: 1rem 1.5rem;
+        font-size: 0.95rem;
+        border-radius: 14px;
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-container {
+        margin: 1rem 0.5rem 2rem;
+        padding: 1.25rem;
+        border-radius: 18px;
+    }
+    
+    .search-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .search-input-wrapper {
+        order: 2;
+    }
+    
+    .mode-toggle-btn {
+        order: 1;
+        width: 100%;
+        padding: 0.875rem 1.25rem;
+        font-size: 0.875rem;
+        min-width: auto;
+        border-radius: 12px;
+    }
+    
+    .search-btn-wrapper {
+        order: 3;
+        width: 100%;
+    }
+    
+    .search-container .search-input {
+        padding: 0.875rem 1rem;
+        font-size: 0.9rem;
+        border-radius: 12px;
+    }
+    
+    .search-container .search-btn {
+        width: 100%;
+        padding: 0.875rem 1.25rem;
+        font-size: 0.9rem;
+        border-radius: 12px;
+        min-width: auto;
+    }
+}
+
+/* Loading and Error States */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e5e7eb;
+    border-top: 4px solid #059669;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Card Animation */
+.card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Stagger animation for cards */
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+.card:nth-child(5) { animation-delay: 0.5s; }
+.card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Search Results Highlighting */
+.card.search-highlight {
+    border-color: #fbbf24;
+    background: linear-gradient(135deg, #fffbeb, #ffffff);
+}
+
+.card.search-highlight .name_ar {
+    color: #d97706;
+}
+
+/* Fade Animation */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Search Results Styles */
+.ayah-result-card {
+    border-right: 4px solid #059669;
+    transition: all 0.3s ease;
+}
+
+.ayah-result-card:hover {
+    transform: translateY(-2px);
+    border-right-width: 6px;
+}
+
+.ayah-result-header {
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 1rem;
+}
+
+.arabic-text {
+    font-size: 1.25rem;
+    line-height: 2;
+    color: #1f2937;
+}
+
+.translation-en, .translation-es {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    padding: 0.5rem;
+    background-color: #f9fafb;
+    border-radius: 0.5rem;
+    border-left: 3px solid #d1d5db;
+}
+
+.translation-en {
+    color: #4b5563;
+}
+
+.translation-es {
+    color: #6b7280;
+    margin-top: 10px;
+}
+
+.search-highlight {
+    background-color: #fef3c7 !important;
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    font-weight: 600;
+    color: #92400e;
+}
+
+.ayah-actions button {
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.ayah-actions button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Search Mode Toggle Improvements */
+.mode-toggle-btn {
+    transition: all 0.3s ease;
+    border: 2px solid #059669;
+}
+
+.mode-toggle-btn:hover {
+    background-color: #059669;
+    color: white;
+    transform: scale(1.02);
+}
+
+.mode-toggle-btn.active {
+    background-color: #059669;
+    color: white;
+}
+
+/* Loading Animation for Search */
+.search-loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #059669;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Search Results Container */
+.search-results-container {
+    min-height: 400px;
+}
+
+.no-results {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #6b7280;
+}
+
+.no-results .icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+}
+
+/* Responsive improvements for search results */
+@media (max-width: 768px) {
+    .ayah-result-card {
+        margin-bottom: 1rem;
+        padding: 1rem;
+    }
+    
+    .arabic-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+    
+    .translation-en, .translation-es {
+        font-size: 0.85rem;
+        padding: 0.375rem;
+    }
+    
+    .ayah-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .ayah-actions button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Fade in animation for search results */
+.fade-in {
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Search input improvements */
+.search-input:focus {
+    border-color: #059669;
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.search-btn:hover {
+    background-color: #047857;
+    transform: translateY(-1px);
+}
+
+/* Mode toggle visual feedback */
+.mode-toggle-btn:active {
+    transform: scale(0.98);
+}

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#059669">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="بيت الإسلام - المكتبة الشاملة للمحتوى الإسلامي. استمع وشاهد المحاضرات والدروس الإسلامية من أفضل العقيدة الإسلامية ">
+    <meta name="keywords" content="إسلام، قرآن، حديث، دروس إسلامية، محاضرات، علماء، دعاة، مكتبة إسلامية، تعليم ديني">
+    <meta name="author" content="بيت الإسلام">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Arabic">
+    <meta name="geo.region" content="MENA">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="بيت الإسلام - مصادر إسلامية شاملة">
+    <meta property="og:description" content="المكتبة الشاملة للمحتوى الإسلامي من أفضل العقيدة الإسلامية ">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://islamhouse.com">
+    <meta property="og:image" content="/logo512.png">
+    <meta property="og:locale" content="ar_SA">
+    <meta property="og:site_name" content="بيت الإسلام">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="بيت الإسلام - مصادر إسلامية شاملة">
+    <meta name="twitter:description" content="المكتبة الشاملة للمحتوى الإسلامي">
+    <meta name="twitter:image" content="/logo512.png">
+
+    <!-- PWA Meta Tags -->
+    <link rel="apple-touch-icon" href="/logo192.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="بيت الإسلام">
+
+    <!-- Performance Optimization -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&amp;family=Cairo:wght@300;400;600;700&amp;display=swap"
+        rel="stylesheet">
+
+    <title>بيت الإسلام - مصادر إسلامية شاملة</title>
+
+    <style type="text/css" id="operaUserStyle"></style>
+
+
+    <link rel="stylesheet" href="assets/stylesheet/app.css">
+    <link rel="stylesheet" href="assets/stylesheet/styles.css">
+
+    <style type="text/css"></style>
+    <meta name="listly-extension-installed" content="true">
+</head>
+
+<body>
+    <div class="App">
+        <!-- Navigation -->
+        <nav class="nav-header" role="navigation" aria-label="التنقل الرئيسي">
+            <div class="nav-content">
+                <div class="logo">
+                    <div class="logo-icon">🕌</div>
+                    <span>بيت الإسلام</span>
+                </div>
+
+                <!-- Hamburger Menu Button -->
+                <button class="hamburger-btn" onclick="toggleMobileMenu()" aria-label="فتح القائمة"
+                    aria-expanded="false" aria-controls="mobile-menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+
+                <!-- Desktop Navigation -->
+                <ul class="nav-links desktop-nav">
+                    <li>
+                        <a href="#" class="nav-link active" onclick="navigateToPage('home')" data-page="home">
+                            الرئيسية
+                        </a>
+                    </li>
+                    <li>
+                        <a href="coran.html" class="nav-link" title="القرآن الكريم">
+                            القرآن الكريم
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" onclick="navigateToPage('categories')" data-page="categories">
+                            التصنيفات
+                        </a>
+                    </li>
+                    <li class="mega-menu-container">
+                        <a href="#" class="nav-link mega-menu-trigger" id="sabiosMenuTrigger">
+                            العقيدة الإسلامية
+                            <svg class="mega-menu-arrow" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 10l5 5 5-5z" />
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" onclick="navigateToPage('favorites')" data-page="favorites">
+                            المفضلة
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay" onclick="closeMobileMenu()" style="display: none;" aria-hidden="true"></div>
+        <div class="mobile-menu" id="mobile-menu" style="display: none;" role="menu" aria-hidden="true">
+            <div class="mobile-menu-header">
+                <div class="mobile-menu-title">القائمة</div>
+                <button class="mobile-menu-close" onclick="closeMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <ul class="mobile-nav-links">
+                <li>
+                    <a href="#" class="mobile-nav-link active" onclick="navigateToPage('home')" data-page="home">
+                        <span class="mobile-nav-icon"></span>
+                        <span class="mobile-nav-text">الرئيسية</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="coran.html" class="mobile-nav-link" title="القرآن الكريم">
+                        <span class="mobile-nav-icon">📖</span>
+                        <span class="mobile-nav-text">القرآن الكريم</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="mobile-nav-link" onclick="navigateToPage('categories')" data-page="categories">
+                        <span class="mobile-nav-icon">📚</span>
+                        <span class="mobile-nav-text">التصنيفات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="mobile-nav-link" onclick="toggleMobileSabiosMenu()" id="mobileSabiosMenu">
+                        <span class="mobile-nav-icon">👨‍🏫</span>
+                        <span class="mobile-nav-text">العقيدة الإسلامية </span>
+                        <svg class="mobile-nav-arrow" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7 10l5 5 5-5z" />
+                        </svg>
+                    </a>
+                    <div class="mobile-sabios-submenu" id="mobileSabiosSubmenu" style="display: none;">
+                        <!-- Mobile sabios list will be dynamically loaded here -->
+                    </div>
+                </li>
+                <li>
+                    <a href="#" class="mobile-nav-link" onclick="navigateToPage('favorites')" data-page="favorites">
+                        <span class="mobile-nav-icon"></span>
+                        <span class="mobile-nav-text">المفضلة</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="container">
+            <div class="search-container" role="search" aria-label="البحث في المحتوى">
+                <input type="text" class="search-input" id="searchInput"
+                    placeholder="ابحث في الكتب، المقالات، الفتاوى، والمحاضرات..." />
+                <button class="search-btn" onclick="performSearch()">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m21 21-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    بحث
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main id="mainContent" role="main" aria-live="polite" aria-label="المحتوى الرئيسي">
+            <!-- Content will be dynamically loaded here -->
+        </main>
+
+        <!-- Audio Player -->
+        <aside id="audioPlayerContainer" class="audio-player-container" style="display: none;" role="region"
+            aria-label="مشغل الصوت" aria-live="polite">
+            <audio id="audioElement" preload="metadata"></audio>
+            <div class="audio-player-content">
+                <!-- Audio Info -->
+                <div class="audio-info">
+                    <div class="audio-title" id="audioTitle">لا يوجد صوت مُحمل</div>
+                    <div class="audio-subtitle" id="audioSubtitle">0:00 / 0:00</div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="audio-progress-container">
+                    <input type="range" id="audioProgress" min="0" max="0" value="0" class="audio-progress-bar">
+                </div>
+
+                <!-- Main Controls -->
+                <div class="audio-controls">
+                    <button class="audio-control-btn" id="shuffleBtn" onclick="toggleShuffle()" title="تبديل عشوائي">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" />
+                        </svg>
+                    </button>
+
+                    <button class="audio-control-btn" onclick="playPrevious()" title="السابق">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M8.445 14.832A1 1 0 0010 14v-2.798l5.445 3.63A1 1 0 0017 14V6a1 1 0 00-1.555-.832L10 8.798V6a1 1 0 00-1.555-.832l-6 4a1 1 0 000 1.664l6 4z" />
+                        </svg>
+                    </button>
+
+                    <button class="audio-control-btn play-pause-btn" id="playPauseBtn" onclick="togglePlayPause()"
+                        title="تشغيل">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+
+                    <button class="audio-control-btn" onclick="playNext()" title="التالي">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M4.555 5.168A1 1 0 003 6v8a1 1 0 001.555.832L10 11.202V14a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4A1 1 0 0010 6v2.798l-5.445-3.63z" />
+                        </svg>
+                    </button>
+
+                    <button class="audio-control-btn" id="repeatBtn" onclick="toggleRepeat()" title="تكرار">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Volume Control -->
+                <div class="volume-control">
+                    <svg class="w-4 h-4 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.617.817L4.5 13.8A2 2 0 002.5 11.8V8.2a2 2 0 012-2l3.883-3.017a1 1 0 011.617.817zm4.79 7.924a2 2 0 11-2.346 0l.83-.692a5 5 0 10-6.154 0l.83.692zM18 10a8 8 0 11-16 0 8 8 0 0116 0z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1" class="volume-slider">
+                </div>
+
+                <!-- Secondary Controls -->
+                <div class="audio-secondary-controls">
+                    <button class="audio-control-btn" id="queueBtn" onclick="toggleQueue()" title="قائمة التشغيل">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" />
+                        </svg>
+                        <span id="queueCounter">0</span>
+                    </button>
+
+                    <button class="audio-control-btn" onclick="closeAudioPlayer()" title="إغلاق">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+    </div>
+
+    <!-- Queue/Playlist Modal -->
+    <div id="audioQueueModal" class="audio-queue-modal" style="display: none;">
+        <div class="audio-queue-content">
+            <div class="audio-queue-header">
+                <h3 class="audio-queue-title">قائمة التشغيل (<span id="queueItemCount">0</span> عنصر)</h3>
+                <div class="audio-queue-actions">
+                    <button onclick="clearQueue()" class="audio-queue-clear">مسح الكل</button>
+                    <button onclick="toggleQueue()" class="audio-queue-close">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="audio-queue-list" id="queueList">
+                <!-- Queue items will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Player Modal -->
+    <div id="videoPlayerModal" class="video-player-modal" style="display: none;">
+        <div class="video-player-content">
+            <div class="video-player-header">
+                <h3 class="video-title" id="videoTitle">عنوان الفيديو</h3>
+                <button class="close-video-btn" onclick="closeVideoPlayer()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="video-container" id="videoContainer">
+                <video class="video-player" id="videoElement" controls style="display: none;">
+                    المتصفح لا يدعم عنصر الفيديو.
+                </video>
+                <iframe class="video-player" id="videoIframe" frameborder="0" allowfullscreen
+                    style="display: none;"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background: linear-gradient(135deg, #064e3b, #065f46); color: white; margin-top: 4rem;"
+        role="contentinfo" aria-label="معلومات الموقع">
+        <div class="container">
+            <div style="padding: 3rem 1rem;">
+                <!-- Footer Grid -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                    
+                    <!-- Sources Section -->
+                    <div style="background: rgba(255, 255, 255, 0.05); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <h3 style="color: #10b981; font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M16.36,14C16.44,13.34 16.5,12.68 16.5,12C16.5,11.32 16.44,10.66 16.36,10H19.74C19.9,10.64 20,11.31 20,12C20,12.69 19.9,13.36 19.74,14M14.59,19.56C15.19,18.45 15.65,17.25 15.97,16H18.92C17.96,17.65 16.43,18.93 14.59,19.56M14.34,14H9.66C9.56,13.34 9.5,12.68 9.5,12C9.5,11.32 9.56,10.65 9.66,10H14.34C14.43,10.65 14.5,11.32 14.5,12C14.5,12.68 14.43,13.34 14.34,14M12,19.96C11.17,18.76 10.5,17.43 10.09,16H13.91C13.5,17.43 12.83,18.76 12,19.96M8,8H5.08C6.03,6.34 7.57,5.06 9.4,4.44C8.8,5.55 8.35,6.75 8,8M5.08,16H8C8.35,17.25 8.8,18.45 9.4,19.56C7.57,18.93 6.03,17.65 5.08,16M4.26,14C4.1,13.36 4,12.69 4,12C4,11.31 4.1,10.64 4.26,10H7.64C7.56,10.66 7.5,11.32 7.5,12C7.5,12.68 7.56,13.34 7.64,14M12,4.03C12.83,5.23 13.5,6.57 13.91,8H10.09C10.5,6.57 11.17,5.23 12,4.03M18.92,8H15.97C15.65,6.75 15.19,5.55 14.59,4.44C16.43,5.07 17.96,6.34 18.92,8M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
+                            </svg>
+                            مصادر المحتوى
+                        </h3>
+                        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                            <a href="https://islamhouse.com" target="_blank" rel="noopener noreferrer" 
+                               style="color: rgba(255, 255, 255, 0.8); text-decoration: none; padding: 0.5rem; border-radius: 6px; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.5rem;"
+                               onmouseover="this.style.backgroundColor='rgba(255,255,255,0.1)'; this.style.color='#10b981'"
+                               onmouseout="this.style.backgroundColor='transparent'; this.style.color='rgba(255,255,255,0.8)'">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"/>
+                                </svg>
+                                بيت الإسلام - islamhouse.com
+                            </a>
+                            <a href="https://dorar.net" target="_blank" rel="noopener noreferrer"
+                               style="color: rgba(255, 255, 255, 0.8); text-decoration: none; padding: 0.5rem; border-radius: 6px; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.5rem;"
+                               onmouseover="this.style.backgroundColor='rgba(255,255,255,0.1)'; this.style.color='#10b981'"
+                               onmouseout="this.style.backgroundColor='transparent'; this.style.color='rgba(255,255,255,0.8)'">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V4A2,2 0 0,0 18,2M6,4H18V20H6V4M7,5V7H17V5H7M7,9V11H17V9H7M7,13V15H17V13H7M7,17V19H17V17H7Z"/>
+                                </svg>
+                                الدرر السنية - dorar.net
+                            </a>
+                            <a href="https://shamela.ws" target="_blank" rel="noopener noreferrer"
+                               style="color: rgba(255, 255, 255, 0.8); text-decoration: none; padding: 0.5rem; border-radius: 6px; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.5rem;"
+                               onmouseover="this.style.backgroundColor='rgba(255,255,255,0.1)'; this.style.color='#10b981'"
+                               onmouseout="this.style.backgroundColor='transparent'; this.style.color='rgba(255,255,255,0.8)'">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"/>
+                                </svg>
+                                المكتبة الشاملة - shamela.ws
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Contact Section -->
+                    <div style="background: rgba(255, 255, 255, 0.05); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <h3 style="color: #10b981; font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20,4H4A2,2 0 0,0 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6A2,2 0 0,0 20,4M20,18H4V8L12,13L20,8V18M20,6L12,11L4,6H20Z"/>
+                            </svg>
+                            تواصل معنا
+                        </h3>
+                        <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 1rem; line-height: 1.6;">
+                            لطلب قواعد البيانات أو الاستفسارات، تواصل معنا عبر:
+                        </p>
+                        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                            <a href="https://t.me/islamhouse_db" target="_blank" rel="noopener noreferrer"
+                               style="color: rgba(255, 255, 255, 0.8); text-decoration: none; padding: 0.75rem; border-radius: 8px; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.75rem; background: rgba(0, 136, 204, 0.1); border: 1px solid rgba(0, 136, 204, 0.2);"
+                               onmouseover="this.style.backgroundColor='rgba(0,136,204,0.2)'; this.style.transform='translateY(-2px)'"
+                               onmouseout="this.style.backgroundColor='rgba(0,136,204,0.1)'; this.style.transform='translateY(0)'">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9.78,18.65L10.06,14.42L17.74,7.5C18.08,7.19 17.67,7.04 17.22,7.31L7.74,13.3L3.64,12C2.76,11.75 2.75,11.14 3.84,10.7L19.81,4.54C20.54,4.21 21.24,4.72 20.96,5.84L18.24,18.65C18.05,19.56 17.5,19.78 16.74,19.36L12.6,16.3L10.61,18.23C10.38,18.46 10.19,18.65 9.78,18.65Z"/>
+                                </svg>
+                                <div>
+                                    <div style="font-weight: 600;">تليجرام</div>
+                                    <div style="font-size: 0.875rem; opacity: 0.8;">@islamhouse_db</div>
+                                </div>
+                            </a>
+                            <a href="mailto:islamhouse.database@gmail.com" target="_blank" rel="noopener noreferrer"
+                               style="color: rgba(255, 255, 255, 0.8); text-decoration: none; padding: 0.75rem; border-radius: 8px; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.75rem; background: rgba(234, 67, 53, 0.1); border: 1px solid rgba(234, 67, 53, 0.2);"
+                               onmouseover="this.style.backgroundColor='rgba(234,67,53,0.2)'; this.style.transform='translateY(-2px)'"
+                               onmouseout="this.style.backgroundColor='rgba(234,67,53,0.1)'; this.style.transform='translateY(0)'">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/>
+                                </svg>
+                                <div>
+                                    <div style="font-weight: 600;">البريد الإلكتروني</div>
+                                    <div style="font-size: 0.875rem; opacity: 0.8;">islamhouse.database@gmail.com</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- About Section -->
+                    <div style="background: rgba(255, 255, 255, 0.05); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <h3 style="color: #10b981; font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M7.07,18.28C7.5,17.38 10.12,16.5 12,16.5C13.88,16.5 16.5,17.38 16.93,18.28C15.57,19.36 13.86,20 12,20C10.14,20 8.43,19.36 7.07,18.28M18.36,16.83C16.93,15.09 13.46,14.5 12,14.5C10.54,14.5 7.07,15.09 5.64,16.83C4.62,15.5 4,13.82 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,13.82 19.38,15.5 18.36,16.83M12,6C10.06,6 8.5,7.56 8.5,9.5C8.5,11.44 10.06,13 12,13C13.94,13 15.5,11.44 15.5,9.5C15.5,7.56 13.94,6 12,6M12,11A1.5,1.5 0 0,1 10.5,9.5A1.5,1.5 0 0,1 12,8A1.5,1.5 0 0,1 13.5,9.5A1.5,1.5 0 0,1 12,11Z"/>
+                            </svg>
+                            عن المشروع
+                        </h3>
+                        <p style="color: rgba(255, 255, 255, 0.7); line-height: 1.6; margin-bottom: 1rem;">
+                            مكتبة إسلامية شاملة تجمع المحتوى الإسلامي من مصادر موثوقة لخدمة طلاب العلم والباحثين في جميع أنحاء العالم.
+                        </p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.875rem; font-weight: 500;">كتب</span>
+                            <span style="background: rgba(59, 130, 246, 0.2); color: #3b82f6; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.875rem; font-weight: 500;">مقالات</span>
+                            <span style="background: rgba(168, 85, 247, 0.2); color: #a855f7; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.875rem; font-weight: 500;">فتاوى</span>
+                            <span style="background: rgba(239, 68, 68, 0.2); color: #ef4444; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.875rem; font-weight: 500;">صوتيات</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Copyright -->
+                <div style="text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.875rem; margin: 0;">
+                        &copy; 2025 بيت الإسلام. جميع الحقوق محفوظة لجميع المسلمين | 
+                        <span style="color: #10b981;">تم تطوير المكتبة بأحدث التقنيات لخدمة الأمة الإسلامية</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
+
+    <!-- Sabio JavaScript (for unified categories functionality) -->
+    <script src="assets/js/sabio.js"></script>
+
+    <!-- Main JavaScript -->
+    <script src="assets/js/app.js"></script>
+
+    <!-- Mega Menu - Positioned outside navigation to prevent layout issues -->
+    <div class="mega-menu" id="sabiosMegaMenu">
+        <div class="mega-menu-content">
+            <div class="mega-menu-header">
+                <h3>اختر العالم أو الداعية</h3>
+                <div class="mega-menu-search">
+                    <input type="text" id="sabiosSearchInput" placeholder="بحث عن عالم أو داعية..." autocomplete="off">
+                    <div class="mega-menu-search-icon">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m21 21-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="mega-menu-grid" id="sabiosGrid">
+                <!-- Sabios list will be dynamically loaded here -->
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
