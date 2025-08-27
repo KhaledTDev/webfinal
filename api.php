@@ -1,4 +1,10 @@
 <?php
+// Configurar headers HTTP
+header('Content-Type: application/json; charset=utf-8');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
+
 require_once 'config.php';
 
 // Manejar solicitudes OPTIONS para CORS
@@ -8,14 +14,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 try {
-    error_log("API called with action: " . ($_GET['action'] ?? 'none'));
+    // error_log("API called with action: " . ($_GET['action'] ?? 'none'));
     
     // Try to get database connection with error handling
     try {
         $db = getDB();
-        error_log("Database connection successful");
+        // error_log("Database connection successful");
     } catch (Exception $dbError) {
-        error_log("Database connection failed: " . $dbError->getMessage());
+        // error_log("Database connection failed: " . $dbError->getMessage());
         
         // Return error response for database connection failure
         http_response_code(503);
@@ -33,19 +39,19 @@ try {
     $search = $_GET['search'] ?? '';
     $id = $_GET['id'] ?? '';
 
-    error_log("Processing action: $action, category: $category, page: $page");
+    // error_log("Processing action: $action, category: $category, page: $page");
 
     switch ($action) {
         case 'categories':
             $result = getCategories($db);
-            error_log("Categories result: " . json_encode($result));
+            // error_log("Categories result: " . json_encode($result));
             echo json_encode($result);
             break;
             
         case 'items':
-            error_log("Getting items for category: $category");
+            // error_log("Getting items for category: $category");
             $result = getItems($db, $category, $page, $search);
-            error_log("Items result count: " . count($result['data'] ?? []));
+            // error_log("Items result count: " . count($result['data'] ?? []));
             
             // Usar flags especiales para manejar UTF-8 problemático
             $json = json_encode($result, JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_SUBSTITUTE | JSON_PARTIAL_OUTPUT_ON_ERROR);
@@ -148,13 +154,18 @@ function getItems($db, $category, $page, $search = '') {
         throw new Exception('Categoría requerida');
     }
     
-    $validCategories = ['books', 'articles', 'fatwa', 'audios', 'videos', 'hadith', 'videos_ulamah', 'quran_recitations', 'ibn-taymiyyah'];
+    $validCategories = ['books', 'articles', 'fatwa', 'fatwas', 'audios', 'videos', 'hadith', 'videos_ulamah', 'quran_recitations', 'ibn-taymiyyah'];
     if (!in_array($category, $validCategories)) {
         throw new Exception('Categoría no válida');
     }
     
-    // Map hadith category to hadiz table
-    $tableName = ($category === 'hadith') ? 'hadiz' : $category;
+    // Map category names to table names
+    $tableName = $category;
+    if ($category === 'hadith') {
+        $tableName = 'hadiz';
+    } elseif ($category === 'fatwas') {
+        $tableName = 'fatwa';
+    }
     
     $offset = ($page - 1) * ITEMS_PER_PAGE;
     $baseQuery = "FROM `$tableName` WHERE 1=1";
@@ -164,7 +175,7 @@ function getItems($db, $category, $page, $search = '') {
     if (!empty($search)) {
         if ($category === 'books') {
             $baseQuery .= " AND (name LIKE :search OR topics LIKE :search OR author LIKE :search)";
-        } elseif ($category === 'fatwa') {
+        } elseif ($category === 'fatwa' || $category === 'fatwas') {
             $baseQuery .= " AND (title LIKE :search OR question LIKE :search OR answer LIKE :search OR mufti LIKE :search)";
         } elseif ($category === 'hadith') {
             $baseQuery .= " AND (hadith LIKE :search OR rawi LIKE :search OR mohdith LIKE :search OR book LIKE :search OR grade LIKE :search OR sharh LIKE :search)";
@@ -181,7 +192,7 @@ function getItems($db, $category, $page, $search = '') {
     }
     
     // Configurar campo de ordenación según categoría
-    if ($category === 'books' || $category === 'fatwa' || $category === 'hadith' || $category === 'videos_ulamah' || $category === 'quran_recitations' || $category === 'ibn-taymiyyah') {
+    if ($category === 'books' || $category === 'fatwa' || $category === 'fatwas' || $category === 'hadith' || $category === 'videos_ulamah' || $category === 'quran_recitations' || $category === 'ibn-taymiyyah') {
         $orderField = 'id';
     } else {
         $orderField = 'extracted_at';

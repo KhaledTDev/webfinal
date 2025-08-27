@@ -196,7 +196,7 @@ function performCoranSearch() {
 // Make function globally available
 window.performCoranSearch = performCoranSearch;
 
-// Search in surahs - IMPROVED VERSION
+// Search in surahs - IMPROVED VERSION with exact number matching
 function searchSurah(query = null) {
     const searchQuery = query || document.getElementById('searchInput').value.trim();
     
@@ -220,14 +220,11 @@ function searchSurah(query = null) {
         const surahNumberStr = surah.number.toString();
         const surahNumberArabic = convertToArabic(surah.number);
         
-        // Exact match for numbers
-        numberMatch = surahNumberStr === englishQuery || 
-                     surahNumberArabic === queryTrimmed ||
-                     surahNumberStr === queryTrimmed;
-        
-        // Partial match for numbers (e.g., "1" matches "1", "10", "11", etc.)
-        if (!numberMatch && /^\d+$/.test(englishQuery)) {
-            numberMatch = surahNumberStr.startsWith(englishQuery);
+        // EXACT match for numbers only - no partial matching
+        if (/^\d+$/.test(englishQuery) || /^[٠-٩]+$/.test(queryTrimmed)) {
+            numberMatch = surahNumberStr === englishQuery || 
+                         surahNumberArabic === queryTrimmed ||
+                         surahNumberStr === queryTrimmed;
         }
         
         // Search by name (Arabic) - improved flexible matching
@@ -371,7 +368,7 @@ function searchSurah(query = null) {
     }
 }
 
-// Search in ayahs - REAL API IMPLEMENTATION
+// Search in ayahs - FIXED API IMPLEMENTATION
 async function searchAyah(query = null) {
     const searchQuery = query || document.getElementById('searchInput').value.trim();
     
@@ -385,8 +382,8 @@ async function searchAyah(query = null) {
     try {
         showLoading(true);
         
-        // Use the real API endpoint
-        const response = await fetch(`assets/php/coran/searchAyahs.php?q=${encodeURIComponent(searchQuery)}`);
+        // Use the ayahs.php endpoint with search parameter
+        const response = await fetch(`assets/php/coran/ayahs.php?search=${encodeURIComponent(searchQuery)}`);
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
@@ -394,32 +391,28 @@ async function searchAyah(query = null) {
         const data = await response.json();
         
         if (data.error) {
-            throw new Error(data.message || 'Error en la búsqueda de ayahs');
+            throw new Error(data.message || 'Error searching ayahs');
         }
         
-        console.log(`📄 Found ${data.total_results} ayahs matching "${searchQuery}"`);
+        console.log(`📄 Found ${data.length || 0} ayahs matching "${searchQuery}"`);
         
         // Render ayah search results
-        renderAyahSearchResults(data.results, searchQuery);
+        renderAyahSearchResults(data, searchQuery);
         
     } catch (error) {
         console.error('Error searching ayahs:', error);
-        const mainContent = document.getElementById('mainContent');
-        mainContent.innerHTML = `
-            <div class="container mx-auto px-4 py-8 text-center">
-                <div class="bg-red-50 border border-red-200 rounded-lg p-8">
-                    <svg class="w-16 h-16 mx-auto mb-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                    <h3 class="text-xl font-bold text-red-900 mb-2">خطأ في البحث</h3>
-                    <p class="text-red-700 mb-4">حدث خطأ أثناء البحث في الآيات</p>
-                    <p class="text-gray-600 mb-4">${error.message}</p>
-                    <button onclick="showAllSurahs()" class="mt-4 px-6 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors">
+        const container = document.getElementById('container');
+        if (container) {
+            container.innerHTML = `
+                <div class="no-content">
+                    <h3>خطأ في البحث</h3>
+                    <p>حدث خطأ أثناء البحث في الآيات: ${error.message}</p>
+                    <button onclick="showAllSurahs()" class="btn btn-primary mt-4">
                         العودة لقائمة السور
                     </button>
                 </div>
-            </div>
-        `;
+            `;
+        }
     } finally {
         showLoading(false);
     }
@@ -1291,13 +1284,119 @@ function toggleSurahFavorite(surahNumber, nameAr, type, ayahsTotal) {
     }));
 }
 
+// Render ayah search results
+function renderAyahSearchResults(ayahs, searchQuery) {
+    const container = document.getElementById('container');
+    if (!container) return;
+    
+    if (!ayahs || ayahs.length === 0) {
+        container.innerHTML = `
+            <div class="no-content">
+                <h3>لا توجد نتائج</h3>
+                <p>لم يتم العثور على آيات تحتوي على "${searchQuery}"</p>
+                <button onclick="showAllSurahs()" class="btn btn-primary mt-4">
+                    العودة لقائمة السور
+                </button>
+            </div>
+        `;
+        return;
+    }
+    
+    const ayahsHTML = ayahs.map((ayah, index) => {
+        const animationDelay = (index * 0.1).toFixed(1);
+        return `
+            <div class="ayah-result fade-in" style="animation-delay: ${animationDelay}s; opacity: 1;">
+                <div class="ayah-header">
+                    <span class="surah-info">سورة ${getSurahName(ayah.surah_number)} - الآية ${convertToArabic(ayah.number)}</span>
+                </div>
+                <div class="ayah-text">
+                    ${highlightSearchTerm(ayah.text, searchQuery)}
+                </div>
+                <div class="ayah-actions">
+                    <button onclick="readSurah(${ayah.surah_number})" class="btn btn-secondary">
+                        اقرأ السورة كاملة
+                    </button>
+                </div>
+            </div>
+        `;
+    }).join('');
+    
+    container.innerHTML = `
+        <div class="search-results-header">
+            <h3>نتائج البحث في الآيات</h3>
+            <p>تم العثور على ${convertToArabic(ayahs.length)} آية تحتوي على "${searchQuery}"</p>
+            <button onclick="showAllSurahs()" class="btn btn-outline">
+                العودة لقائمة السور
+            </button>
+        </div>
+        ${ayahsHTML}
+    `;
+}
+
+// Get surah name by number
+function getSurahName(surahNumber) {
+    const surah = surahData.find(s => s.number === surahNumber);
+    return surah ? surah.name_ar : `رقم ${surahNumber}`;
+}
+
+// Highlight search term in text
+function highlightSearchTerm(text, searchTerm) {
+    if (!searchTerm || !text) return text;
+    
+    const regex = new RegExp(`(${searchTerm})`, 'gi');
+    return text.replace(regex, '<mark>$1</mark>');
+}
+
+// Show all surahs function
+function showAllSurahs() {
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.value = '';
+    }
+    
+    // Reset to surah mode
+    currentSearchMode = 'surah';
+    const toggleText = document.getElementById('modeToggleText');
+    if (toggleText) {
+        toggleText.textContent = 'البحث في السور';
+    }
+    
+    // Show all surahs
+    filteredSurahData = [...surahData];
+    renderSurahCards();
+}
+
+// Clear search function
+function clearSearch() {
+    showAllSurahs();
+}
+
+// Show loading function
+function showLoading(show) {
+    const container = document.getElementById('container');
+    if (!container) return;
+    
+    if (show) {
+        container.innerHTML = `
+            <div class="loading-container">
+                <div class="loading-spinner"></div>
+                <p>جاري البحث...</p>
+            </div>
+        `;
+    }
+}
+
 // Export functions for global access
 window.searchSurah = searchSurah;
-window.searchAyahs = searchAyahs;
+window.searchAyah = searchAyah;
 window.toggleSearchMode = toggleSearchMode;
-window.navigateToAyah = navigateToAyah;
-window.navigateToSurah = navigateToSurah;
+window.showAllSurahs = showAllSurahs;
+window.clearSearch = clearSearch;
+window.renderAyahSearchResults = renderAyahSearchResults;
 window.toggleMobileMenu = toggleMobileMenu;
 window.closeMobileMenu = closeMobileMenu;
 window.navigateToPage = navigateToPage;
 window.toggleSurahFavorite = toggleSurahFavorite;
+window.filterByTypeAndNavigate = filterByTypeAndNavigate;
+window.removeFavorite = removeFavorite;
+window.performCoranSearch = performCoranSearch;

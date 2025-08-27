@@ -182,40 +182,50 @@
 
         <!-- Search Bar -->
         <div class="container">
-            <div class="search-container" role="search" aria-label="البحث في السور">
-                <div class="search-row">
-                    <!-- Mode Toggle Button -->
-                    <button id="modeToggleBtn" class="mode-toggle-btn" onclick="toggleSearchMode()">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                        </svg>
-                        <span id="modeToggleText">البحث في السور</span>
-                    </button>
-                    
-                    <!-- Search Input -->
-                    <div class="search-input-wrapper">
-                        <input type="text" class="search-input" id="searchInput"
-                            placeholder="ابحث عن سورة بالاسم أو الرقم..." />
-                    </div>
-                    
-                    <!-- Search Button -->
-                    <div class="search-btn-wrapper">
-                        <button class="search-btn" onclick="performCoranSearch()">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="m21 21-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
-                            بحث
-                        </button>
-                    </div>
+            <div class="search-container" role="search" aria-label="البحث في السور" style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                <!-- Search Input -->
+                <div class="search-input-wrapper" style="flex: 1; min-width: 300px;">
+                    <input type="text" class="search-input" id="searchInput"
+                        placeholder="ابحث عن سورة بالاسم أو الرقم..." />
+                </div>
+                
+                <!-- Mode Toggle Button -->
+                <button class="mode-toggle-btn" id="modeToggleBtn" onclick="toggleSearchMode()" title="تبديل نمط البحث" style="flex-shrink: 0;">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    <span id="modeToggleText">البحث في السور</span>
+                </button>
+            </div>
+                
+                <!-- Search Mode Indicator -->
+                <div id="searchModeIndicator" class="search-mode-indicator" style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0.75rem 1rem;
+                    background: #f0f9ff;
+                    border: 1px solid #0ea5e9;
+                    border-radius: 6px;
+                    font-size: 0.875rem;
+                    color: #0369a1;
+                    font-weight: 500;
+                    margin-top: 1rem;
+                    text-align: center;
+                ">
+                    <svg style="width: 16px; height: 16px; margin-left: 0.5rem;" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    انقر على الزر الأزرق للتبديل بين البحث في السور والآيات
+                </div>
                 </div>
             </div>
         </div>
 
         <!-- Main Content -->
         <main id="mainContent" role="main" aria-live="polite" aria-label="قائمة السور">
-            <section class="container mx-auto px-4 py-8">
-                <div class="mb-8 text-center">
+            <section class="container mx-auto px-4 py-4">
+                <div class="mb-6 text-center">
                     <h2 class="text-2xl lg:text-3xl font-bold text-emerald-900 mb-4">فهرس السور</h2>
                     <p class="text-emerald-700">اختر السورة التي تريد قراءتها</p>
                 </div>
@@ -372,10 +382,9 @@
         </div>
     </div>
 
-    <!-- JavaScript -->
-    <script src="assets/js/sabio.js"></script>
-    <script src="assets/js/coran.js"></script>
-    <script src="assets/js/app.js"></script>
+    <!-- Coran Page JavaScript - Standalone -->
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/coran-standalone.js"></script>
 
 </body>
 

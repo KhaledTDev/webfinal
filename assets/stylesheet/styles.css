@@ -41,10 +41,6 @@ footer {
   padding-bottom: 0 !important;
 }
 
-.App {
-  min-height: 100vh;
-}
-
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -1555,6 +1551,10 @@ body {
 .App {
   width: 100%;
   overflow-x: hidden;
+}
+
+.App{
+  min-height: 100vh;
 }
 
 /* Ensure all flex containers wrap properly */

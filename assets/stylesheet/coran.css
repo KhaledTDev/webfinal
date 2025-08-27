@@ -5,6 +5,10 @@
     margin-bottom: 1rem;
 }
 
+.App{
+    min-height: 0vh !important;
+  }
+
 .mode-buttons {
     display: flex;
     justify-content: center;

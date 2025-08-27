@@ -182,8 +182,103 @@
 
         <!-- Main Content -->
         <main id="mainContent" role="main" aria-live="polite" aria-label="المحتوى الرئيسي">
-            <!-- Content will be dynamically loaded here -->
-        </main>
+        <div class="hero islamic-pattern">
+          <div class="container mx-auto px-4 text-center">
+            <p class="text-lg md:text-xl lg:text-2xl mb-8 opacity-90">المكتبة الشاملة للمحتوى الإسلامي</p>
+            <div class="stats-container">
+              <div class="stats-card bg-white/10 backdrop-blur-sm border-white/20">
+                <div class="stats-number text-white">301,055</div>
+                <div class="stats-label text-white/80">إجمالي المواد</div>
+              </div>
+              <div class="stats-card bg-white/10 backdrop-blur-sm border-white/20">
+                <div class="stats-number text-white">12,043</div>
+                <div class="stats-label text-white/80">صفحة</div>
+              </div>
+              <div class="stats-card bg-white/10 backdrop-blur-sm border-white/20">
+                <div class="stats-number text-white">0</div>
+                <div class="stats-label text-white/80">المفضلة</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section class="container mx-auto px-4 py-8 lg:py-12">
+          <div class="content-header">
+            <div class="mb-8">
+              <h3 class="text-2xl lg:text-3xl font-bold text-emerald-900 mb-4 calligraphy">أحدث المحتوى</h3>
+              <p class="text-emerald-700 text-sm lg:text-base">استكشف أحدث الكتب والمقالات والفتاوى والمحاضرات الإسلامية</p>
+            </div>
+
+            <div class="category-filters-container">
+              
+        <button onclick="filterByType('showall')" class="btn text-sm lg:text-base btn-primary">
+          الكل
+        </button>
+      
+        <button onclick="filterByType('books')" class="btn text-sm lg:text-base btn-outline">
+          الكتب
+        </button>
+      
+        <button onclick="filterByType('fatwa')" class="btn text-sm lg:text-base btn-outline">
+          الفتاوى
+        </button>
+      
+        <button onclick="filterByType('audios')" class="btn text-sm lg:text-base btn-outline">
+          الصوتيات
+        </button>
+      
+        <button onclick="filterByType('hadith')" class="btn text-sm lg:text-base btn-outline">
+          الأحاديث
+        </button>
+      
+        <button onclick="filterByType('ibn-taymiyyah')" class="btn text-sm lg:text-base btn-outline">
+          الشيخ ابن تيمية
+        </button>
+      
+            </div>
+          </div>
+
+          <div class="content-grid">
+            <!-- Content cards will be dynamically loaded here -->
+          </div>
+
+          <div class="pagination-container">
+            <div class="pagination-info">
+              <span>صفحة 1 من 12043 (301,055 عنصر)</span>
+            </div>
+            
+            <div class="pagination-controls">
+              <button onclick="loadPage(1)" disabled="" class="pagination-btn">
+                الأولى
+              </button>
+              
+              <button onclick="loadPage(0)" disabled="" class="pagination-btn">
+                السابقة
+              </button>
+              
+              <div class="pagination-pages">
+                <button onclick="loadPage(1)" class="pagination-number active">
+                  1
+                </button>
+                <button onclick="loadPage(2)" class="pagination-number ">
+                  2
+                </button>
+                <button onclick="loadPage(3)" class="pagination-number ">
+                  3
+                </button>
+              </div>
+
+              <button onclick="loadPage(2)" class="pagination-btn">
+                التالية
+              </button>
+              
+              <button onclick="loadPage(12043)" class="pagination-btn">
+                الأخيرة
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
 
         <!-- Audio Player -->
         <aside id="audioPlayerContainer" class="audio-player-container" style="display: none;" role="region"
@@ -271,7 +366,8 @@
                     </button>
                 </div>
             </div>
-    </div>
+        </div>
+    </aside>
 
     <!-- Queue/Playlist Modal -->
     <div id="audioQueueModal" class="audio-queue-modal" style="display: none;">
@@ -435,11 +531,9 @@
     </footer>
     </div>
 
-    <!-- Sabio JavaScript (for unified categories functionality) -->
-    <script src="assets/js/sabio.js"></script>
-
-    <!-- Main JavaScript -->
-    <script src="assets/js/app.js"></script>
+    <!-- Index Page JavaScript - Standalone -->
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/index-standalone.js"></script>
 
     <!-- Mega Menu - Positioned outside navigation to prevent layout issues -->
     <div class="mega-menu" id="sabiosMegaMenu">

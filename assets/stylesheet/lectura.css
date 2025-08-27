@@ -1,6 +1,169 @@
 /* ==================== LECTURA PAGE SPECIFIC STYLES ==================== */
 
-/* Ayah Search Styles */
+/* Add any lectura-specific styles here */
+
+/* Search highlighting styles */
+.search-result-highlight {
+  background-color: rgba(16, 185, 129, 0.1);
+  border-left: 3px solid #10b981;
+  transition: all 0.3s ease;
+}
+
+.current-search-match {
+  background-color: rgba(16, 185, 129, 0.2);
+  border-left: 4px solid #059669;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  transform: scale(1.02);
+}
+
+.search-highlight {
+  background-color: #fbbf24;
+  color: #92400e;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+/* Search input styles */
+.ayah-search-input:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* Search navigation styles */
+.search-nav-content {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 12px;
+  backdrop-filter: blur(10px);
+}
+
+/* Floating search navigation in bottom-right corner */
+.search-nav-floating {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 1000 !important;
+  background: #059669 !important;
+  color: white !important;
+  border: none !important;
+  box-shadow: 0 4px 20px rgba(5, 150, 105, 0.4) !important;
+  border-radius: 12px !important;
+  padding: 16px 20px !important;
+  margin: 0 !important;
+  min-width: 200px !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+.search-nav-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.search-nav-floating .search-nav-info {
+  justify-content: center;
+  text-align: center;
+}
+
+.search-match-count {
+  background: #10b981;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.search-nav-floating .search-match-count {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.search-query {
+  color: #059669;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.search-nav-floating .search-query {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 12px;
+  text-align: center;
+  margin-top: 4px;
+}
+
+.search-nav-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.search-nav-floating .search-nav-buttons {
+  justify-content: center;
+  gap: 12px;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 6px;
+  color: #059669;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.search-nav-floating .nav-btn {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: white;
+}
+
+.nav-btn:hover {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: #10b981;
+}
+
+.search-nav-floating .nav-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.05);
+}
+
+.nav-btn:active {
+  transform: scale(0.95);
+}
+
+.nav-btn.close-btn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: #ef4444;
+  color: #dc2626;
+}
+
+.search-nav-floating .nav-btn.close-btn:hover {
+  background: rgba(239, 68, 68, 0.8);
+  border-color: #ef4444;
+  color: white;
+}
+
 .ayah-search-group {
     border-bottom: 1px solid rgba(5, 150, 105, 0.1);
     padding-bottom: 2rem;

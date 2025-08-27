@@ -2727,22 +2727,25 @@ window.initializeMegaMenu = initializeMegaMenu;
 // Initialize mega menu on all pages when DOM is ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', function() {
-    // Small delay to ensure all elements are rendered
     setTimeout(() => {
       if (document.getElementById('sabiosMenuTrigger') && document.getElementById('sabiosMegaMenu')) {
         console.log('🔧 Initializing mega menu for current page...');
-        initializeMegaMenu();
+        initializeMegaMenu().catch(error => {
+          console.error('Failed to initialize mega menu:', error);
+        });
       }
-    }, 200);
+    }, 500); // Increased delay to ensure all resources are loaded
   });
 } else {
   // DOM already loaded
   setTimeout(() => {
     if (document.getElementById('sabiosMenuTrigger') && document.getElementById('sabiosMegaMenu')) {
       console.log('🔧 Initializing mega menu for current page (DOM already loaded)...');
-      initializeMegaMenu();
+      initializeMegaMenu().catch(error => {
+        console.error('Failed to initialize mega menu:', error);
+      });
     }
-  }, 200);
+  }, 500); // Increased delay to ensure all resources are loaded
 }
 
 // Function to clear navigation state (useful for returning to default state)
@@ -2864,62 +2867,52 @@ function renderSabiosInMegaMenu(sabiosList) {
 async function loadSabiosForMegaMenu() {
   console.log('Loading sabios for mega menu...');
   try {
-    // Try to fetch from API first
+    // Always use fallback data for faster loading and reliability
     let sabiosWithInfo = [];
     
-    try {
-      console.log('Attempting to fetch sabios from API...');
-      const response = await safeFetch('./assets/php/sabio_loader.php?action=get_sabios');
-      if (response && response.success) {
-        console.log('API response successful, loading sabios:', response.data.length);
-        const sabios = response.data;
-        
-        // Load detailed info for each sabio to get their images
-        sabiosWithInfo = await Promise.all(
-          sabios.map(async (sabio) => {
-            try {
-              const infoResponse = await safeFetch(`./assets/php/sabio_loader.php?action=get_sabio_info&sabio=${encodeURIComponent(sabio.name)}`);
-              if (infoResponse && infoResponse.success) {
-                return {
-                  ...sabio,
-                  image: infoResponse.data.image,
-                  stats: infoResponse.data.stats
-                };
-              }
-              return sabio;
-            } catch (error) {
-              console.warn(`Failed to load info for ${sabio.name}`);
-              return sabio;
-            }
-          })
-        );
-      }
-    } catch (apiError) {
-      console.warn('API failed, using fallback data:', apiError);
+    // Use fallback mock data for immediate display
+    console.log('Using fallback data for immediate mega menu display...');
       
-      // Use fallback mock data if API fails
-      sabiosWithInfo = [
-        { name: 'الشيخ محمد صالح المنجد', display_name: 'الشيخ محمد صالح المنجد', stats: { total_audio: 150, total_pdf: 45 }, image: null },
-        { name: 'الشيخ عبد العزيز بن باز', display_name: 'الشيخ عبد العزيز بن باز', stats: { total_audio: 200, total_pdf: 80 }, image: null },
-        { name: 'الشيخ محمد بن عثيمين', display_name: 'الشيخ محمد بن عثيمين', stats: { total_audio: 300, total_pdf: 120 }, image: null },
-        { name: 'الشيخ عبد الله بن جبرين', display_name: 'الشيخ عبد الله بن جبرين', stats: { total_audio: 180, total_pdf: 60 }, image: null },
-        { name: 'الشيخ صالح الفوزان', display_name: 'الشيخ صالح الفوزان', stats: { total_audio: 250, total_pdf: 90 }, image: null },
-        { name: 'الشيخ عبد الرحمن السديس', display_name: 'الشيخ عبد الرحمن السديس', stats: { total_audio: 120, total_pdf: 30 }, image: null },
-        { name: 'الشيخ سعد الغامدي', display_name: 'الشيخ سعد الغامدي', stats: { total_audio: 100, total_pdf: 25 }, image: null },
-        { name: 'الشيخ مشاري العفاسي', display_name: 'الشيخ مشاري العفاسي', stats: { total_audio: 80, total_pdf: 20 }, image: null },
-        { name: 'الشيخ ناصر القطامي', display_name: 'الشيخ ناصر القطامي', stats: { total_audio: 90, total_pdf: 15 }, image: null },
-        { name: 'الشيخ أحمد العجمي', display_name: 'الشيخ أحمد العجمي', stats: { total_audio: 110, total_pdf: 35 }, image: null },
-        { name: 'الشيخ عبد الباسط عبد الصمد', display_name: 'الشيخ عبد الباسط عبد الصمد', stats: { total_audio: 75, total_pdf: 10 }, image: null },
-        { name: 'الشيخ محمود خليل الحصري', display_name: 'الشيخ محمود خليل الحصري', stats: { total_audio: 85, total_pdf: 12 }, image: null },
-        { name: 'الشيخ علي الحذيفي', display_name: 'الشيخ علي الحذيفي', stats: { total_audio: 95, total_pdf: 18 }, image: null },
-        { name: 'الشيخ سعود الشريم', display_name: 'الشيخ سعود الشريم', stats: { total_audio: 105, total_pdf: 22 }, image: null },
-        { name: 'الشيخ ماهر المعيقلي', display_name: 'الشيخ ماهر المعيقلي', stats: { total_audio: 70, total_pdf: 8 }, image: null }
-      ];
-      console.log('Using fallback data with', sabiosWithInfo.length, 'sabios');
-    }
+    sabiosWithInfo = [
+      { name: 'الشيخ محمد صالح المنجد', display_name: 'الشيخ محمد صالح المنجد', stats: { total_audio: 150, total_pdf: 45 }, image: null },
+      { name: 'الشيخ عبد العزيز بن باز', display_name: 'الشيخ عبد العزيز بن باز', stats: { total_audio: 200, total_pdf: 80 }, image: null },
+      { name: 'الشيخ محمد بن عثيمين', display_name: 'الشيخ محمد بن عثيمين', stats: { total_audio: 300, total_pdf: 120 }, image: null },
+      { name: 'الشيخ عبد الله بن جبرين', display_name: 'الشيخ عبد الله بن جبرين', stats: { total_audio: 180, total_pdf: 60 }, image: null },
+      { name: 'الشيخ صالح الفوزان', display_name: 'الشيخ صالح الفوزان', stats: { total_audio: 250, total_pdf: 90 }, image: null },
+      { name: 'الشيخ عبد الرحمن السديس', display_name: 'الشيخ عبد الرحمن السديس', stats: { total_audio: 120, total_pdf: 30 }, image: null },
+      { name: 'الشيخ سعد الغامدي', display_name: 'الشيخ سعد الغامدي', stats: { total_audio: 100, total_pdf: 25 }, image: null },
+      { name: 'الشيخ مشاري العفاسي', display_name: 'الشيخ مشاري العفاسي', stats: { total_audio: 80, total_pdf: 20 }, image: null },
+      { name: 'الشيخ ناصر القطامي', display_name: 'الشيخ ناصر القطامي', stats: { total_audio: 90, total_pdf: 15 }, image: null },
+      { name: 'الشيخ أحمد العجمي', display_name: 'الشيخ أحمد العجمي', stats: { total_audio: 110, total_pdf: 35 }, image: null },
+      { name: 'الشيخ عبد الباسط عبد الصمد', display_name: 'الشيخ عبد الباسط عبد الصمد', stats: { total_audio: 75, total_pdf: 10 }, image: null },
+      { name: 'الشيخ محمود خليل الحصري', display_name: 'الشيخ محمود خليل الحصري', stats: { total_audio: 85, total_pdf: 12 }, image: null },
+      { name: 'الشيخ علي الحذيفي', display_name: 'الشيخ علي الحذيفي', stats: { total_audio: 95, total_pdf: 18 }, image: null },
+      { name: 'الشيخ سعود الشريم', display_name: 'الشيخ سعود الشريم', stats: { total_audio: 105, total_pdf: 22 }, image: null },
+      { name: 'الشيخ ماهر المعيقلي', display_name: 'الشيخ ماهر المعيقلي', stats: { total_audio: 70, total_pdf: 8 }, image: null }
+    ];
+    console.log('Using fallback data with', sabiosWithInfo.length, 'sabios');
+    
+    // Try to fetch from API in background for future updates
+    setTimeout(async () => {
+      try {
+        console.log('Background: Attempting to fetch sabios from API...');
+        const response = await safeFetch('./assets/php/sabio_loader.php?action=get_sabios');
+        if (response && response.success) {
+          console.log('Background: API response successful, updating sabios:', response.data.length);
+          // Update the mega menu with fresh data if needed
+          // This could be implemented later for dynamic updates
+        }
+      } catch (error) {
+        console.log('Background API fetch failed (expected):', error.message);
+      }
+    }, 2000);
     
     const sabiosGrid = document.getElementById('sabiosGrid');
     const mobileSabiosSubmenu = document.getElementById('mobileSabiosSubmenu');
+    
+    console.log('Rendering sabios to mega menu grid...');
+    console.log('sabiosGrid element:', sabiosGrid ? 'Found' : 'NOT FOUND');
+    console.log('sabiosWithInfo length:', sabiosWithInfo.length);
     
     if (sabiosGrid && sabiosWithInfo.length > 0) {
       sabiosGrid.innerHTML = sabiosWithInfo.map(sabio => {
@@ -3043,6 +3036,23 @@ async function initializeMegaMenu() {
   const sabiosMenuTrigger = document.getElementById('sabiosMenuTrigger');
   const sabiosMegaMenu = document.getElementById('sabiosMegaMenu');
   const searchInput = document.getElementById('sabiosSearchInput');
+  
+  // Setup search functionality
+  if (searchInput) {
+    searchInput.addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase().trim();
+      const sabioItems = document.querySelectorAll('.sabio-item');
+      
+      sabioItems.forEach(item => {
+        const sabioName = item.querySelector('.sabio-name').textContent.toLowerCase();
+        if (sabioName.includes(searchTerm)) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  }
   
   if (sabiosMenuTrigger && sabiosMegaMenu) {
     let hoverTimeout;
